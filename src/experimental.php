@@ -1,85 +1,69 @@
 <?php
 
-// fw = for who
-function ordr_pz($pizzatype, $fw) {
+function order_pizza($pizzatype, $forWho) {
 
-$type = $pizzatype;
+$typeOfPizza = $pizzatype;
+
 echo 'Creating new order... <br>';
-$toPrint = 'A ';
- $toPrint .= $pizzatype;
-$p = calc_cts($type);
+
+$toPrint = 'A ' . $pizzatype;
+
+
+$priceOfPizza = calc_cost($typeOfPizza);
 
     $address = 'unknown';
-    if($fw == 'koen')
+
+    if($forWho == 'koen')
     {
         $address = 'a peniche in Liège';
-    } elseif ($fw == 'nico')
+    } elseif ($forWho == 'nico')
     {
         $address = 'somewhere in Belgium';
-    } elseif ($fw == 'students') {
+    } elseif ($forWho == 'students') {
         $address = 'BeCode office';
     }
 
-        $toPrint .=   ' pizza should be sent to ' . $fw . ". <br>The address: {$address}.";
+        $toPrint .=   ' pizza should be sent to ' . $forWho . ". <br>The address: {$address}.";
+
     echo $toPrint; echo '<br>';
-    echo'The bill is €'.$p.'.<br>';
-
-
-
-
+    echo'The bill is $'.$priceOfPizza.'.<br>';
     echo "Order finished.<br><br>";
+
 }
 
-    function total_price($p) {
-            return $p;
-    }
-
-        function test($p_type) {
-            echo "Test: type is {$p_type}. <br>";
-        }
-
-function calc_cts($p_type)
+function calc_cost($typeOfPizza)
 {
-    $cst = 'unknown';
+    $cost = 'unknown';
 
-    if ($p_type == 'marguerita') {
-        $cst = 5;
+    if ($typeOfPizza == 'marguerita') {
+        $cost = 5;
     }
     else
         {
-        if ($p_type == 'golden')
+        if ($typeOfPizza == 'golden')
         {
-            $cst = 100;
+            $cost = 100;
         }
 
-            if ($p_type == 'calzone')
+            if ($typeOfPizza == 'calzone')
             {
-                $cst = 10;
+                $cost = 10;
             }
 
-        if ($p_type == 'hawai') {
+        if ($typeOfPizza == 'hawai') {
             throw new Exception('Computer says no');
         }
     }
 
-    return $cst;
+    return $cost;
 }
 
-            function ordr_piz_all()
+            function all_order_pizza()
             {
-            $test= 0;
-            ordr_pz('calzone', 'nico');
-            ordr_pz('marguerita', 'nick');
+            order_pizza('calzone', 'nico');
+            order_pizza('marguerita', 'nick');
 
-            ordr_pz('golden', 'students');
+            order_pizza('golden', 'students');
             }
+all_order_pizza();
 
-function make_Allhappy($do_it) {
-if ($do_it) {
-        ordr_piz_all();
-    } else {
-        // Should not do anything when false
-    }
-}
-
-make_Allhappy(true);

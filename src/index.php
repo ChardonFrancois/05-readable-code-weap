@@ -1,5 +1,3 @@
 <?php
-    
-    phpinfo();
-    
+    require 'experimental.php';
 ?>
